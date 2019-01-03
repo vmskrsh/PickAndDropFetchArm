@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  
+   <!-- Recomended Options: 96, 128, 160, 192, 224 .
+    Bigger means more resolution, but longer training periods.
+    Please Rememebr that this number has to be the same in the training and evaluation.-->
+    <arg name="image_size" default="96" />
+    
+    <!-- Recomended Options: 0.35, 0.5, 0.75, 1.0 -->
+    <arg name="ALPHA" default="1.0" />
+    <arg name="EPOCHS" default="30" />
+    <arg name="BATCH_SIZE" default="5" />
+    <arg name="PATIENCE" default="5" />
+    <arg name="THREADS" default="1" />
+    <arg name="training_name" default="unit1_y_10_model" />
+    <!--<arg name="weight_file_name" default="model-adampaper_2D-224-1.0-30-32-TIME-1540765471.9060042-0.00.h5" />-->
+    <arg name="weight_file_name" default="None" />
+    <arg name="number_of_elements_to_be_output" default="2" />
+    <arg name="initial_learning_rate" default="0.0001" />
+    <arg name="min_learning_rate" default="0.00000001" />
+    
+    <!--
+    <arg name="path_to_database_training_package" default="/home/user/datasets_ws/randomenv_course_unit1" />
+    -->
+    <arg name="path_to_database_training_package" default="None" />
+
+  <node pkg="my_dcnn_training_pkg" type="train_model.py" name="train_model_node"
+        output="screen"
+        args="$(arg image_size) $(arg ALPHA) $(arg EPOCHS) $(arg BATCH_SIZE) $(arg PATIENCE) $(arg THREADS) $(arg training_name) $(arg weight_file_name) $(arg number_of_elements_to_be_output) $(arg initial_learning_rate) $(arg min_learning_rate) $(arg path_to_database_training_package)"/>
+</launch>

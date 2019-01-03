@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  
+  
+    <arg name="path_to_source_training_package" default="/home/user/catkin_ws/src/my_randomgazebomanager_pkg" />
+    
+    
+    <!-- Recomended Options: 96, 128, 160, 192, 224 .
+    Bigger means more resolution, but longer training periods.
+    Please Rememebr that this number has to be the same in the training and evaluation.-->
+    <arg name="image_size" default="96" />
+  
+    <!--
+    <arg name="path_to_database_training_package" default="/home/user/datasets_ws/randomenv_course_unit1" />
+    -->
+    <arg name="path_to_database_training_package" default="None" />
+  
+  <node pkg="my_dcnn_training_pkg" type="generate_dataset.py" name="generate_database_node"
+        output="screen"
+        args="$(arg path_to_source_training_package) $(arg image_size) $(arg path_to_database_training_package)"/>
+</launch>
